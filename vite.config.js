@@ -1,4 +1,4 @@
 export default {
   // config options
-  base: "/calculator/",
+  base: "/Calculator/",
 };
