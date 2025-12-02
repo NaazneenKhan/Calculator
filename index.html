@@ -12,7 +12,7 @@
 
   <main>
   <header id="title">
-    <h1>Basic Calculator</h1>
+    <h1>Scientific Calculator</h1>
     <button id="history-toggle" aria-label="Toggle history" aria-expanded="false">
       &#9776; <!-- hamburger icon -->
     </button>
@@ -20,29 +20,52 @@
 
   <output id="display" aria-live="polite"></output>
 
-  <section aria-label="Keypad">
+  <section aria-label="Scientific Functions" class="scientific-functions">
+    <button data-action="sin">sin</button>
+    <button data-action="cos">cos</button>
+    <button data-action="tan">tan</button>
+    <button data-action="log">log</button>
+    <button data-action="ln">ln</button>
+    
+    <button data-action="asin">sin⁻¹</button>
+    <button data-action="acos">cos⁻¹</button>
+    <button data-action="atan">tan⁻¹</button>
+    <button data-action="sqrt">√</button>
+    <button data-action="power">xʸ</button>
+    
+    <button data-action="exp">eˣ</button>
+    <button data-action="pi">π</button>
+    <button data-action="e">e</button>
+    <button data-action="factorial">x!</button>
+    <button data-action="percent">%</button>
+  </section>
+
+  <section aria-label="Main Keypad" class="main-keypad">
     <button data-action="clear">C</button>
     <button data-action="delete">DEL</button>
-    <button data-action="divide">/</button>
+    <button data-action="open-paren">(</button>
+    <button data-action="close-paren">)</button>
 
     <button data-value="7">7</button>
     <button data-value="8">8</button>
     <button data-value="9">9</button>
-    <button data-action="multiply">×</button>
+    <button data-action="divide">÷</button>
 
     <button data-value="4">4</button>
     <button data-value="5">5</button>
     <button data-value="6">6</button>
-    <button data-action="add">+</button>
+    <button data-action="multiply">×</button>
 
     <button data-value="1">1</button>
     <button data-value="2">2</button>
     <button data-value="3">3</button>
     <button data-action="subtract">-</button>
 
-    <button data-value="0">0</button>
+    <button data-value="0" class="zero">0</button>
     <button data-value=".">.</button>
-    <button data-action="equals">=</button>
+    <button data-action="add">+</button>
+
+    <button data-action="equals" class="equals">=</button>
   </section>
 
   

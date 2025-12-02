@@ -15,17 +15,21 @@ body {
 }
 
 
-header
-{
+header {
     text-align: center;
     position: relative;
-    padding-left: 50px; 
-    padding-right: 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
 }
 
 header h1 {
+    margin: 0;
     color: #FBF5F3;
 }
+
+/* Moved this styling above */
 
 
 output {
@@ -48,7 +52,15 @@ output {
 
 
 
-section[aria-label="Keypad"] {
+/* Scientific functions section */
+.scientific-functions {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+}
+
+/* Main keypad */
+.main-keypad {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
@@ -98,7 +110,7 @@ button[data-action]:hover {
 button[data-action="clear"] {
   background: #E2C2C6;
   color: #093A3E; 
-  grid-column: span 2;
+  /* grid-column: span 2; */
 }
 
 button[data-action="clear"]:hover {
@@ -110,7 +122,6 @@ button[data-action="clear"]:hover {
 button[data-action="equals"] {
   background: #093A3E; 
   color: #FBF5F3; 
-  grid-column: span 2;
 }
 
 button[data-action="equals"]:hover {
@@ -118,14 +129,58 @@ button[data-action="equals"]:hover {
   color: #FBF5F3;
 }
 
+/* Scientific function buttons */
+.scientific-functions button {
+  background: #093A3E; 
+  color: #FBF5F3; 
+  font-size: clamp(0.7rem, 2.2vw, 0.9rem);
+  padding: 0.6rem 0.3rem;
+  min-height: 45px;
+  border: 1px solid #689689;
+}
+
+.scientific-functions button:hover {
+  background: #001011;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(9, 58, 62, 0.3);
+}
+
+.scientific-functions button:active {
+  background: #689689;
+  transform: translateY(0);
+}
+
+/* Zero button spanning two columns */
+.zero {
+  grid-column: span 2;
+}
+
+/* Equals button styling */
+.equals {
+  grid-column: span 4;
+}
+
+/* Parenthesis button styling */
+button[data-action="open-paren"],
+button[data-action="close-paren"] {
+  background: #E2C2C6;
+  color: #093A3E;
+}
+
+button[data-action="open-paren"]:hover,
+button[data-action="close-paren"]:hover {
+  background: #689689;
+  color: #FBF5F3;
+}
+
 /* Main calculator */
 main {
   position: relative;
-  width: min(24rem, 90vw); 
-  max-width: 500px; 
+  width: min(32rem, 95vw); 
+  max-width: 600px; 
   padding: 1rem;
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
   border: 4px solid #689689;
   border-radius: 12px;
   background: #E2C2C6;
@@ -136,9 +191,6 @@ main {
 
 /* Hamburger button on the calculator */
 #history-toggle {
-  position: absolute;
-  top: 1rem;
-  left: 1rem; 
   background: #689689; 
   color: #FBF5F3; 
   border: 1px solid #093A3E;
@@ -152,11 +204,14 @@ main {
   justify-content: center;
   z-index: 20; 
   transition: all 0.2s ease;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 #history-toggle:hover {
   background: #093A3E; 
-  transform: translateY(-1px);
 }
 
 /* History drawer */
@@ -216,4 +271,132 @@ main {
   background: #E2C2C6; 
   padding-left: 0.5rem;
   border-radius: 4px;
+}
+
+/* Mobile responsiveness for scientific calculator */
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+  
+  main {
+    width: 98vw;
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+  
+  header {
+    padding: 0 1rem;
+    gap: 0.8rem;
+  }
+  
+  header h1 {
+    font-size: 1.1rem;
+  }
+  
+  #history-toggle {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+  
+  .scientific-functions {
+    gap: 0.3rem;
+  }
+  
+  .scientific-functions button {
+    font-size: 0.6rem;
+    padding: 0.5rem 0.2rem;
+    min-height: 40px;
+  }
+  
+  .main-keypad {
+    gap: 0.3rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  button {
+    min-height: 50px;
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+  
+  output {
+    font-size: 1.4rem;
+    padding: 0.8rem;
+    min-height: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  #history-drawer {
+    width: 75vw;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    width: 99vw;
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+  
+  .scientific-functions button {
+    font-size: 0.5rem;
+    padding: 0.4rem 0.1rem;
+    min-height: 35px;
+  }
+  
+  button {
+    min-height: 45px;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+  
+  output {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
+  
+  header h1 {
+    font-size: 1rem;
+  }
+  
+  #history-toggle {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+}
+
+/* Landscape mode adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  body {
+    align-items: center;
+    padding: 0.3rem;
+  }
+  
+  main {
+    gap: 0.5rem;
+  }
+  
+  .scientific-functions button {
+    min-height: 30px;
+    padding: 0.3rem 0.2rem;
+    font-size: 0.5rem;
+  }
+  
+  button {
+    min-height: 35px;
+    padding: 0.4rem;
+  }
+  
+  output {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    min-height: 2rem;
+  }
 }
