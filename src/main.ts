@@ -70,7 +70,7 @@ function evaluateExpression(expression: string): string {
       .replace(/π/g, Math.PI.toString())
       .replace(/\be\b/g, Math.E.toString())
       .replace(/(\d+(?:\.\d+)?)%/g, '($1/100)')
-      .replace(/(\d+(?:\.\d+)?)!/g, (match, num) => {
+      .replace(/(\d+(?:\.\d+)?)!/g, (_, num) => {
         const value = parseFloat(num);
         return factorial(value).toString();
       });
@@ -110,14 +110,16 @@ function evaluateExpression(expression: string): string {
 }
 
 function safeEvaluate(expression: string): number {
-  const allowedChars = /^[0-9+\-*/().\s**]+$/;
+  const allowedChars = /^[0-9+\-*/().\s**eE]+$/;
   
   if (!allowedChars.test(expression)) {
     throw new Error("Invalid characters in expression");
   }
   
   const tokens = tokenize(expression);
-  return parseExpression(tokens);
+  const result = parseExpression(tokens);
+  
+  return result;
 }
 
 function tokenize(expression: string): string[] {
@@ -208,7 +210,7 @@ function parseExpression(tokens: string[]): number {
     }
     
     const num = parseFloat(tokens[index++]);
-    if (isNaN(num)) throw new Error("Invalid number");
+    if (isNaN(num)) return NaN;
     return num;
   }
   
